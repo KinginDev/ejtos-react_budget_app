@@ -1,12 +1,13 @@
 import React from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import 'bootstrap/js/src/dropdown.js';
 //Code to import Budget.js
 import Budget from './components/Budget';
 import Remaining from './components/Remaining';
 import ExpenseTotal from './components/ExpenseTotal';
 import ExpenseList from './components/ExpenseList';
+import CurrencyDropDown from './components/CurrencyDropdown'
 // Add code to import the other components here under
 
 
@@ -31,6 +32,9 @@ const App = () => {
                     <div className='col-sm'>
                         <ExpenseTotal />
                     </div>
+                    <div className='col-sm'>
+                        <CurrencyDropDown />
+                    </div>
                         {/* Add ExpenseList component here under */}       
                     </div>
                     <div className='row'> 
@@ -41,7 +45,7 @@ const App = () => {
 
                         {/* Add AllocationForm component here under */}    
                     <AllocationForm />    
-
+            
                 </div>
             </div>
         </AppProvider>

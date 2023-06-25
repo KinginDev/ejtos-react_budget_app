@@ -25,7 +25,7 @@ export const AppReducer = (state, action) => {
                     ...state,
                 };
             } else {
-                alert("Cannot increase the allocation! Out of funds");
+                alert("Cannot increase allocation of funds");
                 return {
                     ...state
                 }
@@ -57,6 +57,12 @@ export const AppReducer = (state, action) => {
                 ...state,
                 budget
             };
+        case 'DECREASE_EXPENSE':
+            alert('Exp decreased')
+            action.type = 'DONE';
+            return{
+                ...state,budget
+            }
         case 'SET_BUDGET':
             action.type = "DONE";
             state.budget = action.payload;
@@ -70,6 +76,11 @@ export const AppReducer = (state, action) => {
             return {
                 ...state
             }
+        case 'UPDATE_BUDGET':
+            return { ...state, budget: action.payload };
+
+        case "UPDATE_CURRENCY":
+            return {...state, currency: action.payload}
 
         default:
             return state;
@@ -86,9 +97,15 @@ const initialState = {
         { id: "Human Resource", name: 'Human Resource', cost: 40 },
         { id: "IT", name: 'IT', cost: 500 },
     ],
-    currency: '£'
-};
+    currencyList: [
+        {name: "Pound", sign: "£"},
+        {name: "Dollar", sign: "$"},
+        {name: "Euro", sign: "€"},
+        {name: "Yen", sign: "¥"},
 
+    ],
+    currency: {}
+}
 // 2. Creates the context this is the thing our components import and use to get the state
 export const AppContext = createContext();
 
@@ -113,7 +130,8 @@ export const AppProvider = (props) => {
                 budget: state.budget,
                 remaining: remaining,
                 dispatch,
-                currency: state.currency
+                currency: state.currency,
+                currencyList: state.currencyList
             }}
         >
             {props.children}
